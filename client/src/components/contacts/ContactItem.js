@@ -5,7 +5,7 @@ import ContactContext from '../../context/contact/contactContext';
 const ContactItem = ({ contact }) => {
     const { id, name, email, phone, type } = contact;
     const contactContext = useContext(ContactContext);
-    const { deleteContact } = contactContext;
+    const { deleteContact, setCurrent, clearCurrent } = contactContext;
 
     return (
         <div className="card bg-light">
@@ -30,8 +30,8 @@ const ContactItem = ({ contact }) => {
                 )}
             </ul>
             <p>
-                <button className="btn btn-dark btn-sm">Edit</button>
-                <button className="btn btn-danger btn-sm" onClick={() => deleteContact(id)}>Delete</button>
+                <button className="btn btn-dark btn-sm" onClick={() => setCurrent(contact)}>Edit</button>
+                <button className="btn btn-danger btn-sm" onClick={() => {deleteContact(id); clearCurrent()}}>Delete</button>
             </p>
         </div>
     );
